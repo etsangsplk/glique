@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-// Node is a node in the graph. It can be any hashable type.
+// Node is a node in the graph. It can be any comparable type.
 type Node interface{}
 
 type Graph interface {
