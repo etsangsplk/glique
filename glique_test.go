@@ -4,22 +4,32 @@ import (
 	"testing"
 )
 
+type WeightedNode struct {
+	data int
+	weight float64
+}
+
 func TestGraph(t *testing.T) {
 	g := NewGraph()
-	g.AddNode(1)
-	g.AddNode(2)
-	g.AddNode(3)
-	g.AddEdge(1, 2)
-	g.AddEdge(2, 3)
 
-	if !g.HasNode(1) {
+	one := WeightedNode{1, 1.0}
+	two := WeightedNode{2, 2.1}
+	three := WeightedNode{3, 3.2}
+
+	g.AddNode(&one)
+	g.AddNode(&two)
+	g.AddNode(&three)
+	g.AddEdge(&one, &two)
+	g.AddEdge(&two, &three)
+
+	if !g.HasNode(&one) {
 		t.Fatalf("graph doesn't have node 1")
 	}
-	if !g.HasNode(2) {
+	if !g.HasNode(&two) {
 		t.Fatalf("graph doesn't have node 1")
 	}
 
-	if !g.HasEdge(1,2) || !g.HasEdge(2,3) {
+	if !g.HasEdge(&one, &two) || !g.HasEdge(&two, &three) {
 		t.Fatalf("g is missing an edge dude")
 	}
 }
