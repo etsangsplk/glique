@@ -14,7 +14,7 @@ type Graph interface {
 	AddEdge(a Node, b Node)
 	RemoveEdge(a Node, b Node) error
 	HasEdge(a Node, b Node) bool
-	Neighbors(node Node) []Node
+	Neighbors(node Node) ([]Node, error)
 }
 
 // edgemap represents the beginning of an edge attached to an Edgedata
