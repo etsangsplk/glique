@@ -14,6 +14,7 @@ type Graph interface {
 	AddEdge(a Node, b Node)
 	RemoveEdge(a Node, b Node) error
 	HasEdge(a Node, b Node) bool
+	Neighbors(node Node) []Node
 }
 
 // edgemap represents the beginning of an edge attached to an Edgedata
@@ -124,4 +125,19 @@ func (g *undirectedGraph) HasEdge(a Node, b Node) bool {
 	}
 
 	return true
+}
+
+func (g *undirectedGraph) Neighbors(node Node) ([]Node, error) {
+	edges, ok := g.edges[node]
+	if !ok {
+		err := fmt.Errorf("Node %s doesn't exist in the graph", node)
+		return nil, err
+	}
+
+	neighbors := []Node{}
+	for e := range edges {
+		neighbors = append(neighbors, e)
+	}
+
+	return neighbors, nil
 }
