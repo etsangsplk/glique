@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// ShortestPath returns the shortest path from source to target on graph g
 func ShortestPath(g Graph, source Node, target Node) ([]Node, error) {
 	pred, succ, w, err := shortestPathHelper(g, source, target)
 
